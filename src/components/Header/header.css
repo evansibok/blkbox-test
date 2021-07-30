@@ -1,0 +1,93 @@
+
+.header {
+  background-color: #262E70;
+  color: white;
+  height: 5rem;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+}
+
+.logomark-con {
+  width: 2rem;
+  height: 2rem;
+  border: 0.15rem solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logomark {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.name {
+  margin-left: 10px;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+.right {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+nav {
+  align-self: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  display: inline;
+  font-size: 0.9rem;
+  margin-left: 1em;
+}
+
+li:first-child {
+  margin-left: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-right: 2em;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle p {
+  color: #296FFA;
+  font-weight: 700;
+  margin: 1.5em;
+}
+
+.user-info > p {
+  margin-left: 0.7em;
+  font-size: 0.9rem;
+}
+
+.active {
+  border-bottom: 0.15rem solid red;
+  margin-top: 0.5em;
+}
