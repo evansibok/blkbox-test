@@ -1,0 +1,87 @@
+.scenes-con {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.scenes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+.scenes-header div p:first-child {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.scenes-header div p:last-child {
+  margin-top: 1em;
+}
+
+.scenes-header > p {
+  align-self: flex-end;
+  color: #296FFA;
+  font-weight: 700;
+}
+
+.frames-con {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2em;
+  padding: 1em;
+  padding-left: 0;
+  margin-bottom: 2em;
+}
+
+.frame {
+  margin-right: 1em;
+  margin-top: 1em;
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+}
+
+.selected-con {
+  position: absolute;
+  background-color: springgreen;
+  display: flex;
+  bottom: 0;
+  color: white;
+  justify-content: center;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  visibility: hidden;
+}
+
+.selected-con p:last-child {
+  margin-left: 0.5em;
+}
+
+.selected-tag {
+  visibility: visible;
+}
+
+.nxt-btn {
+  background-color: #296FFA;
+  border: none;
+  padding: 0.9em;
+  border-radius: 0.3em;
+  color: white;
+  width: 80px;
+  font-size: 0.9rem;
+  align-self: center;
+  margin-bottom: 3em;
+}

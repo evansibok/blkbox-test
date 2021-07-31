@@ -351,8 +351,3 @@ template {
 [hidden] {
   display: none;
 }
-
-/* APP COMPONENT */
-.App {
-  height: 100vh;
-}
