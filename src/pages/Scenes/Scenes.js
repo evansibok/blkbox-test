@@ -41,8 +41,8 @@ function Scenes() {
               onClick={() => selectFrame(`${frame-idx}`)}
             >
               <img src={frame} alt='' />
-              <div className='selected-con'>
-                <p>icon</p>
+              <div className='selected-con selected-tag'>
+                <p>✔</p>
                 <p>Selected</p>
               </div>
             </div>

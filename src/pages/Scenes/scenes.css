@@ -35,7 +35,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   margin-top: 2em;
-  padding: 1em;
+  /* padding: 1em; */
   padding-left: 0;
   margin-bottom: 2em;
 }
@@ -57,10 +57,11 @@ p {
   position: absolute;
   background-color: springgreen;
   display: flex;
+  right: 0;
   bottom: 0;
+  left: 0;
   color: white;
-  justify-content: center;
-  width: 100%;
+  padding-left: 1em;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   visibility: hidden;
