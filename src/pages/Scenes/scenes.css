@@ -46,6 +46,7 @@ p {
   position: relative;
   width: 300px;
   height: 200px;
+  z-index: 9999;
 }
 
 .frame img {

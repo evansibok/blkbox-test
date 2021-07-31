@@ -4,19 +4,30 @@ import './scenes.css';
 
 
 function Scenes() {
-  const [selected, setSelected] = useState([]);
-  const [selectedFrames, setSelectedFrames] = useState([]);
-
+  const [selected, setSelected] = useState([])
+  const [selectedFrames, setSelectedFrames] = useState([])
   
-  const selectFrame = (frame) => {
+
+
+  const selectFrame = (evt, frameId) => {
+    const selTag = evt.target.parentElement.children[1];
+
     // for each frameIds in selected
-    // for 
     // if current frameId is in selected
-    // pop the frameId from selected
-    // pop the frame from selectedFrames
-    // otherwise push to the frameId to selected
-    // and push the frame to selectedFrames
-    
+    if(selected.includes(frameId)){
+      // remove the frameId from selected
+      const newSelected = selected.filter(item => item !== frameId)
+      setSelected(newSelected)
+      selTag.classList.remove('selected-tag');
+
+      // remove the frame from selectedFrames
+    } else {
+      // otherwise add the frameId to selected
+      const newFrame = [...selected, frameId]
+      setSelected(newFrame)
+      selTag.classList.add('selected-tag')
+      // remove push the frame to selectedFrames
+    }
   }
 
 
@@ -38,10 +49,10 @@ function Scenes() {
             <div
               key={idx}
               className='frame'
-              onClick={() => selectFrame(`${frame-idx}`)}
+              onClick={(evt) => selectFrame(evt, `${frame}-${idx}`)}
             >
               <img src={frame} alt='' />
-              <div className='selected-con selected-tag'>
+              <div className={`selected-con`}>
                 <p>✔</p>
                 <p>Selected</p>
               </div>
