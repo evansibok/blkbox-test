@@ -4,8 +4,7 @@ import {
 } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import Header from './components/Header/Header';
-import Scenes from './pages/Scenes/Scenes';
+import Home from './pages/Home/Home';
 
 
 const queryClient = new QueryClient();
@@ -13,13 +12,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className='app'>
-        <div className='app-container'>
-          <Header />
-
-          <Scenes />
-        </div>
-      </div>
+      <Home />
       <ReactQueryDevtools
         initialIsOpen={true}
       // style={{backgroundColor: 'red'}}

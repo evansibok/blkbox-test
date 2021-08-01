@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-import './scenes.css';
+import ScenesHeader from '../../components/ScenesHeader/ScenesHeader';
+import SelectPreview from '../SelectPreview/SelectPreview';
+import EditPreview from '../EditPreview/EditPreview';
 
+import './editor.css';
 
 const fetchScenes = async () => {
   const { data } = await axios.get('http://devserver.blkbox.ai/api/studio/creatives/step2');
@@ -12,16 +15,17 @@ const fetchScenes = async () => {
 }
 
 
-function Scenes() {
+function Editor() {
   const [selectedSceneId, setSelectedSceneId] = useState([]);
   const [selectedScene, setSelectedScene] = useState([]);
+  const [page, setPage] = useState('SELECT_PREVIEW');
 
   const { data, isLoading, isError, error } = useQuery('scenes', fetchScenes);
 
   const selectScene = (scene) => {
     const selTag = document.querySelector(`[id=${CSS.escape(scene.id)}]`);
 
-    if(selectedScene.length > 0){
+    if (selectedScene.length > 0) {
       // if there's a currently selected scene
       // get the old selected element by its Id
       const oldSceneId = selectedSceneId[0];
@@ -44,6 +48,31 @@ function Scenes() {
     }
   }
 
+  const goToNext = () => {
+    setPage('EDIT_PREVIEW');
+  }
+  const goToPrev = () => {
+    setPage('SELECT_PREVIEW');
+  }
+
+  const renderContent = () => {
+    switch (page) {
+      case 'SELECT_PREVIEW':
+        return <SelectPreview
+          scenes={data.data}
+          selectScene={selectScene}
+          goToNext={goToNext}
+        />
+      case 'EDIT_PREVIEW':
+        return <EditPreview
+          scene={selectedScene}
+          goToNext={goToPrev}
+        />
+      default:
+        return <p>Loading...</p>
+    } 
+  }
+
   if (isLoading) {
     return <p>Loading...</p>
   }
@@ -52,49 +81,26 @@ function Scenes() {
     return <p>Error: {error.message}</p>
   }
 
-
   return (
-    <div className='scenes-con'>
-      {/* Scenes header */}
-      <div className='scenes-header'>
-        <div>
-          <p>App Name</p>
-          <p>Select a video frame</p>
-        </div>
-        <p>{selectedSceneId.length} selected out of {data.data.length} frames</p>
+    <div className='editor-con'>
+      <ScenesHeader
+        selectedSceneId={selectedSceneId}
+        scenes={data.data}
+        page={page}
+      />
+
+      {renderContent()}
+
+      <div className='page-btn'>
+        <button
+          className='page-move-btn'
+          onClick={page === 'SELECT_PREVIEW' ? goToNext : goToPrev}
+        >
+          {page === 'SELECT_PREVIEW' ? 'Next' : 'Prev'}
+        </button>
       </div>
-
-      {/* Scenes container */}
-      <div className='frames-con'>
-        {data.data.map((scene, idx) => {
-          const sceneId = `${scene.url}-${idx}`;
-          const newScene = { ...scene, id: sceneId}
-
-          return (
-            <div
-              key={sceneId}
-              className='scene'
-              onClick={() => selectScene(newScene)}
-            >
-              <video src={newScene.url} />
-              <div id={newScene.id} className='selected-con'>
-                <p>✔</p>
-                <p>Selected</p>
-              </div>
-            </div>
-          )
-        })
-        }
-      </div>
-
-      <button
-        className='nxt-btn'
-        onClick={() => console.log('next')}
-      >
-        Next
-      </button>
     </div>
   )
 }
 
-export default Scenes;
+export default Editor;

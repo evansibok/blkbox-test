@@ -1,0 +1,20 @@
+.edit-con {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.video-con {
+  box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
+-webkit-box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
+-moz-box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
+}
+
+.video-con video {
+  width: 700px;
+  height: 400px;
+}
+
+.editor-sect {
+
+}

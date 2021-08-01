@@ -1,0 +1,28 @@
+.editor-con {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.page-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.page-move-btn {
+  background-color: #296FFA;
+  border: none;
+  padding: 0.9em;
+  border-radius: 0.3em;
+  color: white;
+  width: 80px;
+  font-size: 0.9rem;
+  align-self: center;
+  text-align: center;
+}
+
+.page-btn:hover {
+  cursor: pointer;
+}
