@@ -1,33 +1,55 @@
 import { useState } from 'react';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 import './scenes.css';
 
 
+const fetchScenes = async () => {
+  const { data } = await axios.get('http://devserver.blkbox.ai/api/studio/creatives/step2');
+
+  return data;
+}
+
+
 function Scenes() {
-  const [selected, setSelected] = useState([])
-  const [selectedFrames, setSelectedFrames] = useState([])
-  
+  const [selectedSceneId, setSelectedSceneId] = useState([]);
+  const [selectedScene, setSelectedScene] = useState([]);
 
+  const { data, isLoading, isError, error } = useQuery('scenes', fetchScenes);
 
-  const selectFrame = (evt, frameId) => {
-    const selTag = evt.target.parentElement.children[1];
+  const selectScene = (scene) => {
+    const selTag = document.querySelector(`[id=${CSS.escape(scene.id)}]`);
 
-    // for each frameIds in selected
-    // if current frameId is in selected
-    if(selected.includes(frameId)){
-      // remove the frameId from selected
-      const newSelected = selected.filter(item => item !== frameId)
-      setSelected(newSelected)
-      selTag.classList.remove('selected-tag');
+    if(selectedScene.length > 0){
+      // if there's a currently selected scene
+      // get the old selected element by its Id
+      const oldSceneId = selectedSceneId[0];
+      const oldElement = document.querySelector(`[id=${CSS.escape(oldSceneId)}]`);
+      // remove the selected-tag from the old selected element
+      oldElement.classList.remove('selected-tag');
 
-      // remove the frame from selectedFrames
+      // then
+      // replace the current selected Scene Id
+      setSelectedSceneId([scene.id]);
+      // replace the current scene
+      setSelectedScene([scene]);
+      // add the selected tag to the current element
+      selTag.classList.toggle('selected-tag');
+
     } else {
-      // otherwise add the frameId to selected
-      const newFrame = [...selected, frameId]
-      setSelected(newFrame)
-      selTag.classList.add('selected-tag')
-      // remove push the frame to selectedFrames
+      setSelectedSceneId([scene.id]);
+      setSelectedScene([scene]);
+      selTag.classList.toggle('selected-tag');
     }
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
+
+  if (isError) {
+    return <p>Error: {error.message}</p>
   }
 
 
@@ -39,25 +61,29 @@ function Scenes() {
           <p>App Name</p>
           <p>Select a video frame</p>
         </div>
-        <p>{selected.length} selected out of 84 frames</p>
+        <p>{selectedSceneId.length} selected out of {data.data.length} frames</p>
       </div>
 
-      {/* Frames container */}
+      {/* Scenes container */}
       <div className='frames-con'>
-        {
-          ['https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random', 'https://source.unsplash.com/random'].map((frame, idx) => (
+        {data.data.map((scene, idx) => {
+          const sceneId = `${scene.url}-${idx}`;
+          const newScene = { ...scene, id: sceneId}
+
+          return (
             <div
-              key={idx}
-              className='frame'
-              onClick={(evt) => selectFrame(evt, `${frame}-${idx}`)}
+              key={sceneId}
+              className='scene'
+              onClick={() => selectScene(newScene)}
             >
-              <img src={frame} alt='' />
-              <div className={`selected-con`}>
+              <video src={newScene.url} />
+              <div id={newScene.id} className='selected-con'>
                 <p>✔</p>
                 <p>Selected</p>
               </div>
             </div>
-          ))
+          )
+        })
         }
       </div>
 
