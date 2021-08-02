@@ -2,7 +2,7 @@ import {
   QueryClientProvider,
   QueryClient,
 } from 'react-query';
-// import { ReactQueryDevtools } from 'react-query/devtools';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import Home from './pages/Home/Home';
 
@@ -13,9 +13,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Home />
-      {/* <ReactQueryDevtools
+      <ReactQueryDevtools
         initialIsOpen={true}
-      /> */}
+      />
     </QueryClientProvider>
   );
 }

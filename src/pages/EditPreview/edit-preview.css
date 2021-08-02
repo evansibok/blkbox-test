@@ -123,3 +123,7 @@
   height: calc(100% - 10px);
   background-color: #333333;
 }
+
+.active-vid {
+  border: 10px solid #dbdbdb;
+}
