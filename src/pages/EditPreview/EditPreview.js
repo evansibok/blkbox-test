@@ -1,7 +1,9 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { FiPlusCircle, FiRepeat, FiSkipBack, FiSkipForward, FiTrash2 } from 'react-icons/fi';
 
 import './edit-preview.css';
+
 
 const fetchFrames = async () => {
   const { data } = await axios.get('http://devserver.blkbox.ai/api/studio/creatives/step3');
@@ -11,6 +13,8 @@ const fetchFrames = async () => {
 
 
 function EditPreview() {
+  const videoLinks = [];
+  let currentVideo = 0;
 
   const { data: framesRes, isLoading, isError, error } = useQuery('frames', fetchFrames);
 
@@ -22,13 +26,35 @@ function EditPreview() {
     return <p>Error: {error.message}</p>
   }
 
+  for(let i=0; i < framesRes.data.length; i++){
+    videoLinks.push(framesRes.data[i]['url']);
+  }
+
+  const playAllVideos = () => {
+
+    const videoPlayer = document.querySelector('.vid-player');
+    const lastVideo = videoPlayer.src === videoLinks[videoLinks.length - 1];
+    
+    // if no next url
+    if (lastVideo) {
+      // set the video player to the first url
+      // end
+      videoPlayer.src = videoLinks[0];
+    } else {
+      // when the active video ends
+      // update the new active video index
+      currentVideo += 1
+
+      // replace the src attribute with the next url in the array
+      videoPlayer.src = videoLinks[currentVideo];
+      videoPlayer.play();
+    }
+  }
+
   return (
     <div className='edit-con'>
       <div className='video-con'>
-        <video controls>
-          {framesRes.data.map(frame => (
-            <source src={frame.url} type='video/mp4' />
-          ))}
+        <video src={videoLinks[0]} controls onEnded={playAllVideos} className='vid-player'>
         </video>
       </div>
 
@@ -39,11 +65,11 @@ function EditPreview() {
         </div>
 
         <div className='controls-sect'>
-          <p>io</p>
-          <p>io</p>
-          <p>io</p>
-          <p>io</p>
-          <p>io</p>
+          <FiPlusCircle color='#FFF' size={16} />
+          <FiRepeat color='#FFF' size={16} />
+          <FiSkipBack color='#FFF' size={16} />
+          <FiSkipForward color='#FFF' size={16} />
+          <FiTrash2 color='#FFF' size={16} />
         </div>
 
         <div className='frames-sect'>

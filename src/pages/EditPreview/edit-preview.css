@@ -55,6 +55,10 @@
   width: 5%;
 }
 
+.controls-sect svg:hover {
+  cursor: pointer;
+}
+
 .frames-sect {
   display: flex;
   background-color: #f4f4f4;
@@ -67,6 +71,8 @@
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .frames-body::-webkit-scrollbar {
@@ -93,7 +99,8 @@
 
 .frame-container label {
   margin-top: 1em;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .play-tracker {
@@ -102,6 +109,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  margin-left: 2em;
 }
 
 .tracker-head {
