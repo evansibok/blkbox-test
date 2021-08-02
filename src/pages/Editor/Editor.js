@@ -49,7 +49,11 @@ function Editor() {
   }
 
   const goToNext = () => {
-    setPage('EDIT_PREVIEW');
+    if(selectedScene.length === 0){
+      alert('Select an initial scene to continue')
+    } else {
+      setPage('EDIT_PREVIEW');
+    }
   }
   const goToPrev = () => {
     setPage('SELECT_PREVIEW');
@@ -65,7 +69,6 @@ function Editor() {
         />
       case 'EDIT_PREVIEW':
         return <EditPreview
-          scene={selectedScene}
           goToNext={goToPrev}
         />
       default:

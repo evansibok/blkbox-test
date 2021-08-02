@@ -21,4 +21,4 @@ function ScenesHeader({ selectedSceneId, scenes, page }) {
   )
 }
 
-export default ScenesHeader
+export default ScenesHeader;

@@ -30,6 +30,10 @@ p {
   overflow: hidden;
 }
 
+.scene:hover {
+  cursor: pointer;
+}
+
 .scene video {
   width: 100%;
 }

@@ -1,4 +1,4 @@
-import './scenes.css';
+import './select-preview.css';
 
 
 function SelectPreview({ scenes, selectScene }) {

@@ -15,7 +15,6 @@ function App() {
       <Home />
       <ReactQueryDevtools
         initialIsOpen={true}
-      // style={{backgroundColor: 'red'}}
       />
     </QueryClientProvider>
   );

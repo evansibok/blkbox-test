@@ -1,13 +1,15 @@
 .edit-con {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 2em;
+  align-items: center;
 }
 
 .video-con {
   box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
--webkit-box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
--moz-box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
+  -webkit-box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
+  -moz-box-shadow: -1px 0px 13px 0px rgba(0,0,0,0.19);
 }
 
 .video-con video {
@@ -16,5 +18,100 @@
 }
 
 .editor-sect {
+  margin-top: 5em;
+  display: flex;
+  width: 800px;
+  height: 200px;
+  overflow: hidden;
+}
 
+.time-sect {
+  display: flex;
+  flex-direction: column;
+  background-color: #262E70;
+  color: white;
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-sect p:first-child {
+  font-size: 0.7rem;
+  text-transform: capitalize;
+  margin-bottom: 0.6em;
+}
+
+.time-sect p:last-child {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.controls-sect {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #296FFA;
+  width: 5%;
+}
+
+.frames-sect {
+  display: flex;
+  background-color: #f4f4f4;
+  width: 80%;
+  position: relative;
+}
+
+.frames-body {
+  display: flex;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.frames-body::-webkit-scrollbar {
+  display: none;
+}
+
+.frame-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.frame-parent {
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.frame-parent video {
+  width: 100%;
+}
+
+.frame-container label {
+  margin-top: 1em;
+  font-size: 0.9rem;
+}
+
+.play-tracker {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.tracker-head {
+  width: 8px;
+  height: 10px;
+  background-color: #333333;
+}
+
+.tracker-line {
+  width: 2px;
+  height: calc(100% - 10px);
+  background-color: #333333;
 }
