@@ -7,7 +7,7 @@ import './edit-preview.css';
 
 
 const fetchFrames = async () => {
-  const { data } = await axios.get('http://devserver.blkbox.ai/api/studio/creatives/step3');
+  const { data } = await axios.get('https://devserver.blkbox.ai/api/studio/creatives/step3');
 
   return data;
 }

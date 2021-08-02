@@ -9,7 +9,7 @@ import EditPreview from '../EditPreview/EditPreview';
 import './editor.css';
 
 const fetchScenes = async () => {
-  const { data } = await axios.get('http://devserver.blkbox.ai/api/studio/creatives/step2');
+  const { data } = await axios.get('https://devserver.blkbox.ai/api/studio/creatives/step2');
 
   return data;
 }
